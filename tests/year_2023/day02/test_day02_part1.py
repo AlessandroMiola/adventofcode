@@ -36,5 +36,5 @@ def test_get_ncubes(test_inputs, test_results):
     assert get_ncubes_combination_per_game(test_inputs) == test_results
 
 
-def test_get_sum_feasible_ids(mock_file_data):
+def test_sum_feasible_ids(mock_file_data):
     assert sum_feasible_games_ids(mock_file_data) == 8
