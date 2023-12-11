@@ -11,11 +11,12 @@ from src.year_2023.day01.part1 import (
 @pytest.fixture
 def mock_file_data(tmp_path):
     test_file_path = os.path.join(tmp_path, "test_file.txt")
-    test_input = """1abc2
-    pqr3stu8vwx
-    a1b2c3d4e5f
-    treb7uchet
-    """
+    test_input = (
+        "1abc2\n"
+        "pqr3stu8vwx\n"
+        "a1b2c3d4e5f\n"
+        "treb7uchet"
+    )
     with open(test_file_path, "w") as file:
         file.write(test_input)
     return test_file_path
