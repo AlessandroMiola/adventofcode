@@ -35,6 +35,6 @@ if __name__ == "__main__":
     dir_path = os.path.dirname(os.path.abspath(__file__))
     file_path = os.path.join(dir_path, "data", file_name)
     print(
-        f"Sum of winning numbers is: "
+        f"The product of winning combinations is: "
         f"{get_product_winning_combinations(file_path)}"
     )
