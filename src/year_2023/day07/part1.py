@@ -5,7 +5,7 @@ from collections import Counter
 from src.year_2023.utils import read_file
 
 
-camel_cards = [
+camel_cards_p1 = [
     "2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A"
 ]
 
@@ -18,12 +18,12 @@ def get_hands_to_bids(lines: list[str]) -> dict[str, int]:
     return {line.split()[0]: int(line.split()[1]) for line in lines}
 
 
-def map_hand_to_values(hand: str) -> list[int]:
+def map_hand_to_values(hand: str, camel_cards: list[str]) -> list[int]:
     card_to_value = _map_card_to_value(camel_cards)
     return [card_to_value[card] for card in hand]
 
 
-def map_values_to_hand(values: list[int]) -> str:
+def map_values_to_hand(values: list[int], camel_cards: list[str]) -> str:
     value_to_card = {
         value: card for card, value in _map_card_to_value(camel_cards).items()
     }
@@ -63,10 +63,15 @@ def get_sorted_hand_values_by_rank(
     )
 
 
-def get_hands_to_rank(lines: list[str]) -> dict[str, int]:
+def get_hands_to_rank(
+    lines: list[str],
+    camel_cards: list[str]
+) -> dict[str, int]:
     hands = [k for k, _ in get_hands_to_bids(lines).items()]
     ladders = [map_hand_to_ladder(hand) for hand in hands]
-    hands_to_values = [map_hand_to_values(hand) for hand in hands]
+    hands_to_values = [
+        map_hand_to_values(hand, camel_cards) for hand in hands
+    ]
     sorted_hand_values = get_sorted_hand_values_by_rank(
         ladders, hands_to_values
     )
@@ -74,7 +79,7 @@ def get_hands_to_rank(lines: list[str]) -> dict[str, int]:
         len(lines) - sorted_hand_values.index(value) for value in sorted_hand_values
     ]
     return {
-        map_values_to_hand(hand_values): rank
+        map_values_to_hand(hand_values, camel_cards): rank
         for (_, hand_values), rank in zip(sorted_hand_values, hand_values_rank)
     }
 
@@ -82,7 +87,7 @@ def get_hands_to_rank(lines: list[str]) -> dict[str, int]:
 def get_total_winnings(file_path: str) -> int:
     lines = read_file(file_path)
     hands_to_bids = get_hands_to_bids(lines)
-    hands_to_rank = get_hands_to_rank(lines)
+    hands_to_rank = get_hands_to_rank(lines, camel_cards_p1)
     return sum(
         (bid * hands_to_rank.get(hand) for hand, bid in hands_to_bids.items())
     )

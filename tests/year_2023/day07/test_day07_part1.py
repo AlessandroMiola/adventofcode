@@ -14,6 +14,11 @@ from src.year_2023.day07.part1 import (
 from src.year_2023.utils import read_file
 
 
+camel_cards_p1 = [
+    "2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A"
+]
+
+
 @pytest.fixture
 def mock_file_data(tmp_path):
     test_file_path = os.path.join(tmp_path, "test_file.txt")
@@ -59,7 +64,7 @@ def test_get_hands_to_bids(test_input_hand_and_bid, test_hand, test_bid):
     ]
 )
 def test_map_hand_to_values(test_hand, test_values):
-    assert map_hand_to_values(test_hand) == test_values
+    assert map_hand_to_values(test_hand, camel_cards_p1) == test_values
 
 
 @pytest.mark.parametrize(
@@ -73,7 +78,7 @@ def test_map_hand_to_values(test_hand, test_values):
     ]
 )
 def test_map_values_to_hand(test_hand, test_values):
-    assert map_values_to_hand(test_values) == test_hand
+    assert map_values_to_hand(test_values, camel_cards_p1) == test_hand
 
 
 @pytest.mark.parametrize(
@@ -123,7 +128,7 @@ def test_get_sorted_hand_values_by_rank():
 )
 def test_get_hands_to_rank(mock_file_data, test_hand, test_rank):
     lines = read_file(mock_file_data)
-    hands_to_rank = get_hands_to_rank(lines)
+    hands_to_rank = get_hands_to_rank(lines, camel_cards_p1)
     assert hands_to_rank.get(test_hand) == test_rank
 
 
