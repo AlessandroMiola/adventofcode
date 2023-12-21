@@ -3,6 +3,7 @@ import os
 import pytest
 
 from src.year_2023.day07.part2 import (
+    camel_cards_p2,
     get_best_in_hand_besides_jolly,
     get_hands_to_rank,
     get_total_winnings,
@@ -29,10 +30,10 @@ def mock_file_data(tmp_path):
 @pytest.mark.parametrize(
     ["test_hand", "test_best_card_in_hand"],
     [
-        ("32T3K", "3"),  
-        ("T55J5", "5"),  
-        ("KK677", "K"),  
-        ("KTJJT", "T"),  
+        ("32T3K", "3"),
+        ("T55J5", "5"),
+        ("KK677", "K"),
+        ("KTJJT", "T"),
         ("QQQJA", "Q"),
         ("JJJJJ", "A"),
     ]
@@ -71,9 +72,9 @@ def test_replace_jolly_with_best_card(
 )
 def test_get_hands_to_rank(mock_file_data, test_hand, test_rank):
     lines = read_file(mock_file_data)
-    hands_to_rank = get_hands_to_rank(lines)
+    hands_to_rank = get_hands_to_rank(lines, camel_cards_p2)
     assert hands_to_rank.get(test_hand) == test_rank
 
 
 def test_get_total_winnings(mock_file_data):
-    assert get_total_winnings(mock_file_data) == 5905
+    assert get_total_winnings(mock_file_data, camel_cards_p2) == 5905

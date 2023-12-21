@@ -35,12 +35,15 @@ def replace_jolly_with_best_card(hand: str) -> str:
 
 def get_hands_to_rank(
     lines: list[str],
+    camel_cards: list[int]
 ) -> dict[str, int]:
+    # build ladders based on transformed hand
+    # break ties based on original hand
     hands = [k for k, _ in get_hands_to_bids(lines).items()]
     transformed_hands = [replace_jolly_with_best_card(hand) for hand in hands]
     ladders = [map_hand_to_ladder(t_hand) for t_hand in transformed_hands]
     hands_to_values = [
-        map_hand_to_values(hand, camel_cards_p2) for hand in hands
+        map_hand_to_values(hand, camel_cards) for hand in hands
     ]
     sorted_hand_values = get_sorted_hand_values_by_rank(
         ladders, hands_to_values
@@ -49,15 +52,18 @@ def get_hands_to_rank(
         len(lines) - sorted_hand_values.index(value) for value in sorted_hand_values
     ]
     return {
-        map_values_to_hand(hand_values, camel_cards_p2): rank
+        map_values_to_hand(hand_values, camel_cards): rank
         for (_, hand_values), rank in zip(sorted_hand_values, hand_values_rank)
     }
 
 
-def get_total_winnings(file_path: str) -> int:
+def get_total_winnings(
+    file_path: str,
+    camel_cards: list[int]
+) -> int:
     lines = read_file(file_path)
     hands_to_bids = get_hands_to_bids(lines)
-    hands_to_rank = get_hands_to_rank(lines)
+    hands_to_rank = get_hands_to_rank(lines, camel_cards)
     return sum(
         (bid * hands_to_rank.get(hand) for hand, bid in hands_to_bids.items())
     )
@@ -67,4 +73,6 @@ if __name__ == "__main__":
     file_name = "input_file.txt"
     dir_path = os.path.dirname(os.path.abspath(__file__))
     file_path = os.path.join(dir_path, "data", file_name)
-    print(f"Total winnings are: {get_total_winnings(file_path)}")
+    print(
+        f"Total winnings are: {get_total_winnings(file_path, camel_cards_p2)}"
+    )

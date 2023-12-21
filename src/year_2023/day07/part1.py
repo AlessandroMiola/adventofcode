@@ -84,10 +84,13 @@ def get_hands_to_rank(
     }
 
 
-def get_total_winnings(file_path: str) -> int:
+def get_total_winnings(
+    file_path: str,
+    camel_cards: list[int]
+) -> int:
     lines = read_file(file_path)
     hands_to_bids = get_hands_to_bids(lines)
-    hands_to_rank = get_hands_to_rank(lines, camel_cards_p1)
+    hands_to_rank = get_hands_to_rank(lines, camel_cards)
     return sum(
         (bid * hands_to_rank.get(hand) for hand, bid in hands_to_bids.items())
     )
@@ -97,4 +100,6 @@ if __name__ == "__main__":
     file_name = "input_file.txt"
     dir_path = os.path.dirname(os.path.abspath(__file__))
     file_path = os.path.join(dir_path, "data", file_name)
-    print(f"Total winnings are: {get_total_winnings(file_path)}")
+    print(
+        f"Total winnings are: {get_total_winnings(file_path, camel_cards_p1)}"
+    )

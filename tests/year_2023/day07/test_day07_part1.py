@@ -3,6 +3,7 @@ import os
 import pytest
 
 from src.year_2023.day07.part1 import (
+    camel_cards_p1,
     get_hands_to_bids,
     get_hands_to_rank,
     get_sorted_hand_values_by_rank,
@@ -12,11 +13,6 @@ from src.year_2023.day07.part1 import (
     map_values_to_hand
 )
 from src.year_2023.utils import read_file
-
-
-camel_cards_p1 = [
-    "2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A"
-]
 
 
 @pytest.fixture
@@ -133,4 +129,4 @@ def test_get_hands_to_rank(mock_file_data, test_hand, test_rank):
 
 
 def test_get_total_winnings(mock_file_data):
-    assert get_total_winnings(mock_file_data) == 6440
+    assert get_total_winnings(mock_file_data, camel_cards_p1) == 6440
