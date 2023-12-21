@@ -6,9 +6,7 @@ from src.year_2023.utils import read_file
 
 def extract_calibration_value(input_str: str) -> int:
     try:
-        return int(
-            re.findall(r"\d", input_str)[0] + re.findall(r"\d", input_str)[-1]
-        )
+        return int(re.findall(r"\d", input_str)[0] + re.findall(r"\d", input_str)[-1])
     except IndexError:
         return 0
 

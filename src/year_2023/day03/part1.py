@@ -26,10 +26,7 @@ def get_symbols_pos(input_lines: list[str]) -> list[int]:
     ]
 
 
-def get_candidate_pnum_symbols_pos(
-    number_pos: tuple[int],
-    len_input: int
-) -> list[int]:
+def get_candidate_pnum_symbols_pos(number_pos: tuple[int], len_input: int) -> list[int]:
     num_p_start, num_p_end, _ = number_pos
     return sorted(
         list(

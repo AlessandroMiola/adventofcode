@@ -12,9 +12,7 @@ from src.year_2023.day07.part1 import (
 from src.year_2023.utils import read_file
 
 
-camel_cards_p2 = [
-    "J", "2", "3", "4", "5", "6", "7", "8", "9", "T", "Q", "K", "A"
-]
+camel_cards_p2 = ["J", "2", "3", "4", "5", "6", "7", "8", "9", "T", "Q", "K", "A"]
 
 
 def get_best_in_hand_besides_jolly(hand: str) -> str:
@@ -33,21 +31,14 @@ def replace_jolly_with_best_card(hand: str) -> str:
     return hand.replace("J", get_best_in_hand_besides_jolly(hand))
 
 
-def get_hands_to_rank(
-    lines: list[str],
-    camel_cards: list[int]
-) -> dict[str, int]:
+def get_hands_to_rank(lines: list[str], camel_cards: list[int]) -> dict[str, int]:
     # build ladders based on transformed hand
     # break ties based on original hand
     hands = [k for k, _ in get_hands_to_bids(lines).items()]
     transformed_hands = [replace_jolly_with_best_card(hand) for hand in hands]
     ladders = [map_hand_to_ladder(t_hand) for t_hand in transformed_hands]
-    hands_to_values = [
-        map_hand_to_values(hand, camel_cards) for hand in hands
-    ]
-    sorted_hand_values = get_sorted_hand_values_by_rank(
-        ladders, hands_to_values
-    )
+    hands_to_values = [map_hand_to_values(hand, camel_cards) for hand in hands]
+    sorted_hand_values = get_sorted_hand_values_by_rank(ladders, hands_to_values)
     hand_values_rank = [
         len(lines) - sorted_hand_values.index(value) for value in sorted_hand_values
     ]
@@ -57,22 +48,15 @@ def get_hands_to_rank(
     }
 
 
-def get_total_winnings(
-    file_path: str,
-    camel_cards: list[int]
-) -> int:
+def get_total_winnings(file_path: str, camel_cards: list[int]) -> int:
     lines = read_file(file_path)
     hands_to_bids = get_hands_to_bids(lines)
     hands_to_rank = get_hands_to_rank(lines, camel_cards)
-    return sum(
-        (bid * hands_to_rank.get(hand) for hand, bid in hands_to_bids.items())
-    )
+    return sum((bid * hands_to_rank.get(hand) for hand, bid in hands_to_bids.items()))
 
 
 if __name__ == "__main__":
     file_name = "input_file.txt"
     dir_path = os.path.dirname(os.path.abspath(__file__))
     file_path = os.path.join(dir_path, "data", file_name)
-    print(
-        f"Total winnings are: {get_total_winnings(file_path, camel_cards_p2)}"
-    )
+    print(f"Total winnings are: {get_total_winnings(file_path, camel_cards_p2)}")

@@ -41,12 +41,8 @@ def mock_file_data(tmp_path):
     ]
 )
 def test_get_hands_to_bids(test_input_hand_and_bid, test_hand, test_bid):
-    assert [
-        k for k, _ in get_hands_to_bids(test_input_hand_and_bid).items()
-    ][0] == test_hand
-    assert [
-        v for _, v in get_hands_to_bids(test_input_hand_and_bid).items()
-    ][0] == test_bid
+    assert [k for k, _ in get_hands_to_bids(test_input_hand_and_bid).items()][0] == test_hand
+    assert [v for _, v in get_hands_to_bids(test_input_hand_and_bid).items()][0] == test_bid
 
 
 @pytest.mark.parametrize(

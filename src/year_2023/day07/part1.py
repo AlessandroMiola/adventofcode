@@ -5,9 +5,7 @@ from collections import Counter
 from src.year_2023.utils import read_file
 
 
-camel_cards_p1 = [
-    "2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A"
-]
+camel_cards_p1 = ["2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A"]
 
 
 def _map_card_to_value(cards: list[str]) -> dict[str, int]:
@@ -24,9 +22,7 @@ def map_hand_to_values(hand: str, camel_cards: list[str]) -> list[int]:
 
 
 def map_values_to_hand(values: list[int], camel_cards: list[str]) -> str:
-    value_to_card = {
-        value: card for card, value in _map_card_to_value(camel_cards).items()
-    }
+    value_to_card = {value: card for card, value in _map_card_to_value(camel_cards).items()}
     return ''.join(value_to_card[value] for value in values)
 
 
@@ -63,18 +59,11 @@ def get_sorted_hand_values_by_rank(
     )
 
 
-def get_hands_to_rank(
-    lines: list[str],
-    camel_cards: list[str]
-) -> dict[str, int]:
+def get_hands_to_rank(lines: list[str], camel_cards: list[str]) -> dict[str, int]:
     hands = [k for k, _ in get_hands_to_bids(lines).items()]
     ladders = [map_hand_to_ladder(hand) for hand in hands]
-    hands_to_values = [
-        map_hand_to_values(hand, camel_cards) for hand in hands
-    ]
-    sorted_hand_values = get_sorted_hand_values_by_rank(
-        ladders, hands_to_values
-    )
+    hands_to_values = [map_hand_to_values(hand, camel_cards) for hand in hands]
+    sorted_hand_values = get_sorted_hand_values_by_rank(ladders, hands_to_values)
     hand_values_rank = [
         len(lines) - sorted_hand_values.index(value) for value in sorted_hand_values
     ]
@@ -84,22 +73,15 @@ def get_hands_to_rank(
     }
 
 
-def get_total_winnings(
-    file_path: str,
-    camel_cards: list[int]
-) -> int:
+def get_total_winnings(file_path: str, camel_cards: list[int]) -> int:
     lines = read_file(file_path)
     hands_to_bids = get_hands_to_bids(lines)
     hands_to_rank = get_hands_to_rank(lines, camel_cards)
-    return sum(
-        (bid * hands_to_rank.get(hand) for hand, bid in hands_to_bids.items())
-    )
+    return sum((bid * hands_to_rank.get(hand) for hand, bid in hands_to_bids.items()))
 
 
 if __name__ == "__main__":
     file_name = "input_file.txt"
     dir_path = os.path.dirname(os.path.abspath(__file__))
     file_path = os.path.join(dir_path, "data", file_name)
-    print(
-        f"Total winnings are: {get_total_winnings(file_path, camel_cards_p1)}"
-    )
+    print(f"Total winnings are: {get_total_winnings(file_path, camel_cards_p1)}")
