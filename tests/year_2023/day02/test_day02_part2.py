@@ -2,10 +2,7 @@ import os
 
 import pytest
 
-from src.year_2023.day02.part2 import (
-    get_min_ncubes_to_play,
-    sum_power_ncubes
-)
+from src.year_2023.day02.part2 import get_min_ncubes_to_play, sum_power_ncubes
 
 
 @pytest.fixture
@@ -32,7 +29,7 @@ def mock_file_data(tmp_path):
         ("Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red", [14, 3, 15]),
         ("Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green", [6, 3, 2]),
         ("Game 6: ", [0, 0, 0]),
-    ]
+    ],
 )
 def test_get_min_ncubes_to_play(test_inputs, test_results):
     assert get_min_ncubes_to_play(test_inputs) == test_results

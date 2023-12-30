@@ -12,7 +12,7 @@ def get_n_matches_per_game(line: str) -> int:
 
 def get_points_per_game(line: str) -> int:
     n_matches = get_n_matches_per_game(line)
-    return (2 ** (n_matches - 1) if n_matches > 0 else 0)
+    return 2 ** (n_matches - 1) if n_matches > 0 else 0
 
 
 def sum_points(file_path: str) -> int:

@@ -7,7 +7,7 @@ from src.year_2023.day07.part2 import (
     get_best_in_hand_besides_jolly,
     get_hands_to_rank,
     get_total_winnings,
-    replace_jolly_with_best_card
+    replace_jolly_with_best_card,
 )
 from src.year_2023.utils import read_file
 
@@ -15,13 +15,7 @@ from src.year_2023.utils import read_file
 @pytest.fixture
 def mock_file_data(tmp_path):
     test_file_path = os.path.join(tmp_path, "test_file.txt")
-    test_input = (
-        "32T3K 765\n"
-        "T55J5 684\n"
-        "KK677 28\n"
-        "KTJJT 220\n"
-        "QQQJA 483"
-    )
+    test_input = "32T3K 765\nT55J5 684\nKK677 28\nKTJJT 220\nQQQJA 483"
     with open(test_file_path, "w") as file:
         file.write(test_input)
     return test_file_path
@@ -36,7 +30,7 @@ def mock_file_data(tmp_path):
         ("KTJJT", "T"),
         ("QQQJA", "Q"),
         ("JJJJJ", "A"),
-    ]
+    ],
 )
 def test_get_best_card_in_hand(test_hand, test_best_card_in_hand):
     assert get_best_in_hand_besides_jolly(test_hand) == test_best_card_in_hand
@@ -51,12 +45,9 @@ def test_get_best_card_in_hand(test_hand, test_best_card_in_hand):
         ("KTJJT", "KTTTT"),
         ("QQQJA", "QQQQA"),
         ("JJJJJ", "AAAAA"),
-    ]
+    ],
 )
-def test_replace_jolly_with_best_card(
-    test_original_hand,
-    test_transformed_hand
-):
+def test_replace_jolly_with_best_card(test_original_hand, test_transformed_hand):
     assert replace_jolly_with_best_card(test_original_hand) == test_transformed_hand
 
 
@@ -68,7 +59,7 @@ def test_replace_jolly_with_best_card(
         ("KK677", 2),
         ("KTJJT", 5),
         ("QQQJA", 4),
-    ]
+    ],
 )
 def test_get_hands_to_rank(mock_file_data, test_hand, test_rank):
     lines = read_file(mock_file_data)

@@ -30,7 +30,7 @@ def mock_file_data(tmp_path):
         ("Card 4: 41 92 73 84 69 | 59 84 76 51 58  5 54 83", 1),
         ("Card 5: 87 83 26 28 32 | 88 30 70 12 93 22 82 36", 0),
         ("Card 6: 31 18 13 56 72 | 74 77 10 23 35 67 36 11", 0),
-    ]
+    ],
 )
 def test_get_points_per_game(test_inputs, test_results):
     assert get_points_per_game(test_inputs) == test_results

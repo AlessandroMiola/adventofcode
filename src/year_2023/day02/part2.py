@@ -14,6 +14,7 @@ def get_min_ncubes_to_play(input_str: str) -> list[int]:
 def sum_power_ncubes(file_path: str) -> int:
     def _read_file(file_path: str) -> list[str]:
         return read_file(file_path)
+
     lines = _read_file(file_path)
     return sum(reduce(mul, get_min_ncubes_to_play(line)) for line in lines)
 

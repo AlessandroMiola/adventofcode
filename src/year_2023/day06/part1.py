@@ -30,7 +30,4 @@ if __name__ == "__main__":
     file_name = "input_file.txt"
     dir_path = os.path.dirname(os.path.abspath(__file__))
     file_path = os.path.join(dir_path, "data", file_name)
-    print(
-        f"The product of winning combinations is: "
-        f"{get_product_winning_combinations(file_path)}"
-    )
+    print(f"The product of winning combinations is: {get_product_winning_combinations(file_path)}")
