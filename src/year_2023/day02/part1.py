@@ -8,7 +8,7 @@ def get_ncubes_by_colour_per_game(input_str: str, colour_str: str) -> list[int]:
     return [
         int(el.group()) if el is not None else 0
         for input_substr in input_str.split(";")
-        for el in [re.search(f"\d+(?= {colour_str})", input_substr)]
+        for el in [re.search(rf"\d+(?= {colour_str})", input_substr)]
     ]
 
 
