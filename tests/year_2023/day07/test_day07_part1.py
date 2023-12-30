@@ -10,7 +10,7 @@ from src.year_2023.day07.part1 import (
     get_total_winnings,
     map_hand_to_values,
     map_hand_to_ladder,
-    map_values_to_hand
+    map_values_to_hand,
 )
 from src.year_2023.utils import read_file
 
@@ -18,13 +18,7 @@ from src.year_2023.utils import read_file
 @pytest.fixture
 def mock_file_data(tmp_path):
     test_file_path = os.path.join(tmp_path, "test_file.txt")
-    test_input = (
-        "32T3K 765\n"
-        "T55J5 684\n"
-        "KK677 28\n"
-        "KTJJT 220\n"
-        "QQQJA 483"
-    )
+    test_input = "32T3K 765\nT55J5 684\nKK677 28\nKTJJT 220\nQQQJA 483"
     with open(test_file_path, "w") as file:
         file.write(test_input)
     return test_file_path
@@ -38,7 +32,7 @@ def mock_file_data(tmp_path):
         (["KK677 28"], "KK677", 28),
         (["KTJJT 220"], "KTJJT", 220),
         (["QQQJA 483"], "QQQJA", 483),
-    ]
+    ],
 )
 def test_get_hands_to_bids(test_input_hand_and_bid, test_hand, test_bid):
     assert [k for k, _ in get_hands_to_bids(test_input_hand_and_bid).items()][0] == test_hand
@@ -53,7 +47,7 @@ def test_get_hands_to_bids(test_input_hand_and_bid, test_hand, test_bid):
         ("KK677", [13, 13, 6, 7, 7]),
         ("KTJJT", [13, 10, 11, 11, 10]),
         ("QQQJA", [12, 12, 12, 11, 14]),
-    ]
+    ],
 )
 def test_map_hand_to_values(test_hand, test_values):
     assert map_hand_to_values(test_hand, camel_cards_p1) == test_values
@@ -67,7 +61,7 @@ def test_map_hand_to_values(test_hand, test_values):
         ([13, 13, 6, 7, 7], "KK677"),
         ([13, 10, 11, 11, 10], "KTJJT"),
         ([12, 12, 12, 11, 14], "QQQJA"),
-    ]
+    ],
 )
 def test_map_values_to_hand(test_hand, test_values):
     assert map_values_to_hand(test_values, camel_cards_p1) == test_hand
@@ -81,7 +75,7 @@ def test_map_values_to_hand(test_hand, test_values):
         ("KK677", [2, 2, 1]),
         ("KTJJT", [2, 2, 1]),
         ("QQQJA", [3, 1, 1]),
-    ]
+    ],
 )
 def test_map_hand_to_ladder(test_hand, test_ladder):
     assert map_hand_to_ladder(test_hand) == test_ladder
@@ -94,7 +88,7 @@ def test_get_sorted_hand_values_by_rank():
         [10, 5, 5, 12, 5],
         [13, 13, 6, 7, 7],
         [13, 10, 12, 12, 10],
-        [11, 11, 11, 12, 14]
+        [11, 11, 11, 12, 14],
     ]
     test_results = [
         ([3, 1, 1], [11, 11, 11, 12, 14]),
@@ -103,9 +97,7 @@ def test_get_sorted_hand_values_by_rank():
         ([2, 2, 1], [13, 10, 12, 12, 10]),
         ([2, 1, 1, 1], [3, 2, 10, 3, 13]),
     ]
-    assert (
-        get_sorted_hand_values_by_rank(test_ladders, test_values) == test_results
-    )
+    assert get_sorted_hand_values_by_rank(test_ladders, test_values) == test_results
 
 
 @pytest.mark.parametrize(
@@ -116,7 +108,7 @@ def test_get_sorted_hand_values_by_rank():
         ("KK677", 3),
         ("KTJJT", 2),
         ("QQQJA", 5),
-    ]
+    ],
 )
 def test_get_hands_to_rank(mock_file_data, test_hand, test_rank):
     lines = read_file(mock_file_data)

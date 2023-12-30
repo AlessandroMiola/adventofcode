@@ -17,12 +17,12 @@ camel_cards_p2 = ["J", "2", "3", "4", "5", "6", "7", "8", "9", "T", "Q", "K", "A
 
 def get_best_in_hand_besides_jolly(hand: str) -> str:
     if hand != "JJJJJ":
-        hand_wo_jolly = ''.join(card for card in hand if card != "J")
+        hand_wo_jolly = "".join(card for card in hand if card != "J")
     else:
         hand_wo_jolly = "AAAAA"
     best_hand_values = max(
         Counter(map_hand_to_values(hand_wo_jolly, camel_cards_p2)).most_common(),
-        key=lambda x: (x[1], x[0])
+        key=lambda x: (x[1], x[0]),
     )[0]
     return map_values_to_hand([best_hand_values], camel_cards_p2)
 

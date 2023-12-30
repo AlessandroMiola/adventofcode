@@ -14,6 +14,7 @@ def extract_calibration_value(input_str: str) -> int:
 def sum_calibration_values(file_path: str) -> int:
     def _read_file(file_path: str) -> list[str]:
         return read_file(file_path)
+
     lines = _read_file(file_path)
     return sum(extract_calibration_value(line) for line in lines)
 

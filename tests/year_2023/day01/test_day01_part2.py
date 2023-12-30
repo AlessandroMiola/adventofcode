@@ -2,10 +2,7 @@ import os
 
 import pytest
 
-from src.year_2023.day01.part2 import (
-    extract_calibration_value,
-    sum_calibration_values
-)
+from src.year_2023.day01.part2 import extract_calibration_value, sum_calibration_values
 
 
 @pytest.fixture
@@ -37,8 +34,8 @@ def mock_file_data(tmp_path):
         ("7pqrstsixteen", 76),
         ("", 0),
         ("jhdjdkaddas", 0),
-        ("eightwo", 82)
-    ]
+        ("eightwo", 82),
+    ],
 )
 def test_extract_calibration_value(test_inputs, test_results):
     assert extract_calibration_value(test_inputs) == test_results

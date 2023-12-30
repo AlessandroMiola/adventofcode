@@ -2,21 +2,13 @@ import os
 
 import pytest
 
-from src.year_2023.day01.part1 import (
-    extract_calibration_value,
-    sum_calibration_values
-)
+from src.year_2023.day01.part1 import extract_calibration_value, sum_calibration_values
 
 
 @pytest.fixture
 def mock_file_data(tmp_path):
     test_file_path = os.path.join(tmp_path, "test_file.txt")
-    test_input = (
-        "1abc2\n"
-        "pqr3stu8vwx\n"
-        "a1b2c3d4e5f\n"
-        "treb7uchet"
-    )
+    test_input = "1abc2\npqr3stu8vwx\na1b2c3d4e5f\ntreb7uchet"
     with open(test_file_path, "w") as file:
         file.write(test_input)
     return test_file_path
@@ -31,8 +23,8 @@ def mock_file_data(tmp_path):
         ("treb7uchet", 77),
         ("yewiu0fegrwh", 0),
         ("", 0),
-        ("jhdjdkaddas", 0)
-    ]
+        ("jhdjdkaddas", 0),
+    ],
 )
 def test_extract_calibration_value(test_inputs, test_results):
     assert extract_calibration_value(test_inputs) == test_results
