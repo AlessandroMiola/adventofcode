@@ -1,4 +1,10 @@
+<div align="center">
+
+![Actions](https://github.com/AlessandroMiola/adventofcode/actions/workflows/actions.yaml/badge.svg)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![codecov](https://codecov.io/gh/AlessandroMiola/adventofcode/graph/badge.svg?token=2URTWXTDV6)](https://codecov.io/gh/AlessandroMiola/adventofcode)
+
+</div>
 
 # Solutions to `advent-of-code` puzzles
 
