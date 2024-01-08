@@ -1,7 +1,6 @@
 import os
 import re
 import typing
-
 from functools import reduce
 
 from src.year_2023.utils import read_file
@@ -10,7 +9,7 @@ from src.year_2023.utils import read_file
 def get_time_and_winning_distance_per_race(lines: list[str]) -> typing.Iterator:
     times = [int(num) for num in re.findall(r"\b\d+", lines[0])]
     distances = [int(num) for num in re.findall(r"\b\d+", lines[1])]
-    return zip(times, distances)
+    return zip(times, distances, strict=False)
 
 
 def get_n_winning_combinations(time: int, distance: int) -> int:

@@ -8,8 +8,8 @@ from src.year_2023.day07.part1 import (
     get_hands_to_rank,
     get_sorted_hand_values_by_rank,
     get_total_winnings,
-    map_hand_to_values,
     map_hand_to_ladder,
+    map_hand_to_values,
     map_values_to_hand,
 )
 from src.year_2023.utils import read_file

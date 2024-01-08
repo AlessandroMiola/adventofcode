@@ -1,9 +1,7 @@
 import os
-
 from collections import Counter
 
 from src.year_2023.utils import read_file
-
 
 camel_cards_p1 = ["2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A"]
 
@@ -51,7 +49,7 @@ def _map_ladder_to_rank(ladder: list[int]) -> int:
 def get_sorted_hand_values_by_rank(
     ladders: list[list[int]], hands_to_values: list[list[int]]
 ) -> list[tuple[list[int]]]:
-    ladders_and_values = list(zip(ladders, hands_to_values))
+    ladders_and_values = list(zip(ladders, hands_to_values, strict=False))
     return sorted(
         ladders_and_values, key=lambda x: (-_map_ladder_to_rank(x[0]), tuple(-el for el in x[1]))
     )
@@ -67,7 +65,7 @@ def get_hands_to_rank(lines: list[str], camel_cards: list[str]) -> dict[str, int
     ]
     return {
         map_values_to_hand(hand_values, camel_cards): rank
-        for (_, hand_values), rank in zip(sorted_hand_values, hand_values_rank)
+        for (_, hand_values), rank in zip(sorted_hand_values, hand_values_rank, strict=False)
     }
 
 

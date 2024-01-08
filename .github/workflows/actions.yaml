@@ -51,12 +51,11 @@ jobs:
       - name: Install project
         run: poetry install --no-interaction
 
+      - name: Enforce code style (Ruff)
+        run: poetry run ruff check --show-source --show-fixes .
+
       - name: Verify code formatting (Black)
         run: poetry run black --check --diff .
-
-      - name: Enforce code style (flake8)
-        continue-on-error: true
-        run: poetry run flake8 --show-source .
 
       - name: Run tests
         run: poetry run pytest --verbose

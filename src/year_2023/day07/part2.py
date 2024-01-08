@@ -1,5 +1,4 @@
 import os
-
 from collections import Counter
 
 from src.year_2023.day07.part1 import (
@@ -10,7 +9,6 @@ from src.year_2023.day07.part1 import (
     map_values_to_hand,
 )
 from src.year_2023.utils import read_file
-
 
 camel_cards_p2 = ["J", "2", "3", "4", "5", "6", "7", "8", "9", "T", "Q", "K", "A"]
 
@@ -44,7 +42,7 @@ def get_hands_to_rank(lines: list[str], camel_cards: list[int]) -> dict[str, int
     ]
     return {
         map_values_to_hand(hand_values, camel_cards): rank
-        for (_, hand_values), rank in zip(sorted_hand_values, hand_values_rank)
+        for (_, hand_values), rank in zip(sorted_hand_values, hand_values_rank, strict=False)
     }
 
 

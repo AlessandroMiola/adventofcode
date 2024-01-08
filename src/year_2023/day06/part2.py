@@ -1,8 +1,8 @@
 import os
 import re
 
-from src.year_2023.utils import read_file
 from src.year_2023.day06.part1 import get_n_winning_combinations as _get_n_winning_combinations
+from src.year_2023.utils import read_file
 
 
 def get_time_and_winning_distance(lines: list[str]) -> tuple[int]:

@@ -11,13 +11,14 @@ repos:
       - id: check-toml
   - repo: local
     hooks:
+      - id: ruff
+        name: ruff (linter)
+        entry: poetry run ruff check .
+        language: system
+        types: [python]
+        args: [--fix]
       - id: black
         name: black
         entry: poetry run black .
-        language: system
-        types: [python]
-      - id: flake8
-        name: flake8
-        entry: poetry run flake8 .
         language: system
         types: [python]

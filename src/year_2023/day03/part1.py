@@ -29,12 +29,10 @@ def get_symbols_pos(input_lines: list[str]) -> list[int]:
 def get_candidate_pnum_symbols_pos(number_pos: tuple[int], len_input: int) -> list[int]:
     num_p_start, num_p_end, _ = number_pos
     return sorted(
-        list(
-            set(range(num_p_start - len_input - 1, num_p_end - len_input + 1))
-            .union(set(range(num_p_start - 1, num_p_start)))
-            .union(set(range(num_p_end, num_p_end + 1)))
-            .union(set(range(num_p_start + len_input - 1, num_p_end + len_input + 1)))
-        )
+        set(range(num_p_start - len_input - 1, num_p_end - len_input + 1))
+        .union(set(range(num_p_start - 1, num_p_start)))
+        .union(set(range(num_p_end, num_p_end + 1)))
+        .union(set(range(num_p_start + len_input - 1, num_p_end + len_input + 1)))
     )
 
 
@@ -43,16 +41,16 @@ def sum_part_numbers(file_path: str) -> int:
     len_input = get_len_input(input_lines)
     numbers_pos = get_numbers_pos(input_lines)
     symbols_pos = get_symbols_pos(input_lines)
-    sum = 0
+    result = 0
     for num_p_start, num_p_end, num in numbers_pos:
         candidate_symbols_pos = get_candidate_pnum_symbols_pos(
             (num_p_start, num_p_end, num), len_input
         )
         for sym_p_start in symbols_pos:
             if sym_p_start in candidate_symbols_pos:
-                sum += num
+                result += num
                 break
-    return sum
+    return result
 
 
 if __name__ == "__main__":
