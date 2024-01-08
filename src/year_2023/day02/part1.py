@@ -18,6 +18,7 @@ def get_ncubes_combination_per_game(input_str: str) -> list[tuple[int]]:
             get_ncubes_by_colour_per_game(input_str, "red"),
             get_ncubes_by_colour_per_game(input_str, "green"),
             get_ncubes_by_colour_per_game(input_str, "blue"),
+            strict=False,
         )
     )
 
@@ -31,10 +32,11 @@ def sum_feasible_games_ids(file_path: str) -> int:
         int(re.search(r"\d+(?=:)", line).group())
         for line in lines
         if all(
-            all(el1 <= el2 for el1, el2 in zip(combination, target))
+            all(el1 <= el2 for el1, el2 in zip(combination, target, strict=False))
             for combination, target in zip(
                 get_ncubes_combination_per_game(line),
                 [(12, 13, 14)] * len(get_ncubes_combination_per_game(line)),
+                strict=False,
             )
         )
     )

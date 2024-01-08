@@ -1,5 +1,4 @@
 import os
-
 from functools import reduce
 from operator import mul
 
@@ -8,7 +7,7 @@ from src.year_2023.utils import read_file
 
 
 def get_min_ncubes_to_play(input_str: str) -> list[int]:
-    return [max(cube) for cube in zip(*get_ncubes_combination_per_game(input_str))]
+    return [max(cube) for cube in zip(*get_ncubes_combination_per_game(input_str), strict=False)]
 
 
 def sum_power_ncubes(file_path: str) -> int:

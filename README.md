@@ -14,10 +14,11 @@ Personal attempt to solve the `advent-of-code`[^aoc] puzzles in a `TDD` fashion 
 
 ### ⚠️ TODO:
  - Repo setup:
-   - 🚧 try out `ruff` as a linter, thus replacing `flake8`
+   - 🚧 ~~try out `ruff` as a linter, thus replacing `flake8`~~
    - 🚧 rely on a unique configuration file (possibly `pyproject.toml`)
    - 🚧 add `mypy` (`--strict`?) in the pipeline
    - 🚧 `makefile` | `justfile`
+   - 🚧 try out `ruff` as a formatter, thus replacing `black`?
    - 🚧 Dockerization?
    - 🚧 else?
  - Puzzles:
