@@ -1,6 +1,7 @@
 <div align="center">
 
 ![Actions](https://github.com/AlessandroMiola/adventofcode/actions/workflows/actions.yaml/badge.svg)
+[![Lint: ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![codecov](https://codecov.io/gh/AlessandroMiola/adventofcode/graph/badge.svg?token=2URTWXTDV6)](https://codecov.io/gh/AlessandroMiola/adventofcode)
 
