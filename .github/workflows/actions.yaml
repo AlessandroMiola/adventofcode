@@ -51,6 +51,9 @@ jobs:
       - name: Install project
         run: poetry install --no-interaction
 
+      - name: Setup just
+        uses: taiki-e/install-action@just
+
       - name: Enforce code style (Ruff)
         run: just ruff-show-violations
 
