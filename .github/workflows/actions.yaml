@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        shell: pwsh
+        shell: powershell
 
     steps:
       - name: Check out repository
