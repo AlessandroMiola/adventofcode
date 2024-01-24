@@ -57,24 +57,20 @@ jobs:
           shell: pwsh
 
       - name: Enforce code style (Ruff)
+        shell: pwsh
         run: just ruff-show-violations
-        with:
-          shell: pwsh
 
       - name: Verify code formatting (Black)
+        shell: pwsh
         run: just black-check
-        with:
-          shell: pwsh
 
       - name: Run tests
+        shell: pwsh
         run: just test
-        with:
-          shell: pwsh
 
       - name: Generate test coverage report
+        shell: pwsh
         run: just test-and-report-cov
-        with:
-          shell: pwsh
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
