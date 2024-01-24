@@ -13,12 +13,12 @@ repos:
     hooks:
       - id: ruff
         name: ruff (linter)
-        entry: poetry run ruff check .
+        entry: just ruff
         language: system
         types: [python]
         args: [--fix]
       - id: black
         name: black
-        entry: poetry run black .
+        entry: just black
         language: system
         types: [python]

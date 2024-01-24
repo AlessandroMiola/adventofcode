@@ -51,17 +51,20 @@ jobs:
       - name: Install project
         run: poetry install --no-interaction
 
+      - name: Setup just
+        uses: taiki-e/install-action@just
+
       - name: Enforce code style (Ruff)
-        run: poetry run ruff check --show-source --show-fixes .
+        run: just ruff-show-violations
 
       - name: Verify code formatting (Black)
-        run: poetry run black --check --diff .
+        run: just black-check
 
       - name: Run tests
-        run: poetry run pytest --verbose
+        run: just test
 
       - name: Generate test coverage report
-        run: poetry run pytest --cov=./ --cov-report=xml
+        run: just test-and-report-cov
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
