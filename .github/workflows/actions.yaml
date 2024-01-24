@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        shell: powershell
+        shell: pwsh
 
     steps:
       - name: Check out repository
@@ -53,18 +53,28 @@ jobs:
 
       - name: Setup just
         uses: taiki-e/install-action@just
+        with:
+          shell: pwsh
 
       - name: Enforce code style (Ruff)
         run: just ruff-show-violations
+        with:
+          shell: pwsh
 
       - name: Verify code formatting (Black)
         run: just black-check
+        with:
+          shell: pwsh
 
       - name: Run tests
         run: just test
+        with:
+          shell: pwsh
 
       - name: Generate test coverage report
         run: just test-and-report-cov
+        with:
+          shell: pwsh
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
