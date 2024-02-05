@@ -18,6 +18,7 @@ Personal attempt to solve the `advent-of-code`[^aoc] puzzles in a `TDD` fashion 
    - 🚧 ~~try out `ruff` as a linter, thus replacing `flake8`~~
    - 🚧 ~~`makefile` | `justfile`~~
    - 🚧 rely on a unique configuration file (possibly `pyproject.toml`)
+   - 🚧 add `mkdocs`-rendered docs
    - 🚧 add `mypy` (`--strict`?) in the pipeline
    - 🚧 try out `ruff` as a formatter, thus replacing `black`?
    - 🚧 Dockerization?
