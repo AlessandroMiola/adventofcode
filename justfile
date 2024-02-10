@@ -24,7 +24,7 @@ ruff:
 
 ruff-show-violations:
   @echo "🚀 Linting the project with Ruff and show violations"
-  @poetry run ruff check --show-source --show-fixes src tests
+  @poetry run ruff check --show-source src tests
 
 ruff-fix:
   @echo "🚀 Linting the project with Ruff and autofix violations (where possible)"
@@ -35,10 +35,14 @@ black:
   @poetry run black src tests
 
 black-check:
-  @echo "🚀 Checking formatting advices from Black"
-  @poetry run black --check --diff src tests
+  @echo "🚀 Listing files Black would reformat"
+  @poetry run black --check src tests
 
-lint-and-format: ruff black
+black-diff:
+  @echo "🚀 Checking formatting advices from Black"
+  @poetry run black --diff src tests
+
+lint-and-format: ruff-fix black
 
 test:
   @echo "🚀 Testing code with pytest"

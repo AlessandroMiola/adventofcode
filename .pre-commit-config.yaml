@@ -13,10 +13,9 @@ repos:
     hooks:
       - id: ruff
         name: ruff (linter)
-        entry: just ruff
+        entry: just ruff-fix
         language: system
         types: [python]
-        args: [--fix]
       - id: black
         name: black
         entry: just black
